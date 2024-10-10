@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Female Equal Rights in Australia</title>
@@ -14,93 +13,35 @@
             margin: 0;
             padding: 20px;
         }
-
-        #vis1,
-        #vis2 {
+        #vis1 {
             background-color: white;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            margin-bottom: 20px;
-        }
-
-        #vis3 {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .container {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
         }
-
         .main-title {
             font-size: 28px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 30px;
         }
-
-        .text-box {
-            background-color: #fff;
-            padding: 10px 15px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-
-            #vis1,
-            #vis2 {
-                width: 100%;
-            }
-
-            .container {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
-
 <body>
     <div class="main-title">Female Equal Rights in Australia</div>
-    <div class="container">
-        <div id="vis1"></div> <!-- Map Visualization -->
-        <div id="vis2"></div> <!-- Line Chart Visualization -->
-    </div>
-    <div class="text-box">
-        This map displays the Female Employment to Population Ratio across different Australian states from 1988 to
-        2024. Use the dropdown menu to select a year and observe changes in employment ratios over time.
-    </div>
-    <div class="text-box">
-        This line graph illustrates the trend of average weekly earnings for males and females in Australia between 1995
-        and 2024. The shaded area highlights the gap between male and female weekly earnings.
-    </div>
-    <div id="vis3"></div> <!-- Bar Chart Visualization -->
-    <div class="text-box">
-        This bar chart provides estimates of sexual assault cases by gender for various Australian states for the year
-        2019. Select a state to see specific details and compare the estimates between males and females.
-    </div>
+    <div id="vis1"></div> <!-- First visualization (Map) -->
 
-    <div id="vis4"></div> 
     <script>
-        // Map visualization: Female Employment to Population Ratio
         var spec1 = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "width": 500,
-            "height": 400,
+            "width": 800, 
+            "height": 500,
             "title": {
                 "text": "Female Employment to Population Ratio in Australian States",
                 "fontSize": 20,
-                "font": "sans-serif",
+                "font": "sans-serif", 
                 "color": "#333",
                 "anchor": "middle",
                 "offset": 20
@@ -120,7 +61,7 @@
                 }
             ],
             "data": {
-                "url": "https://raw.githubusercontent.com/isut0003/3179/main/ne_50m-2.topojson",
+                "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/ne_50m-2.topojson",
                 "format": {
                     "type": "topojson",
                     "feature": "ne_50m_admin_1_states_provinces"
@@ -131,7 +72,7 @@
                     "lookup": "properties.name",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/isut0003/3179/main/Employment%20Population%20Female%20by%20year.csv",
+                            "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/Employment%20Population%20Female%20by%20year.csv",
                             "format": {
                                 "type": "csv",
                                 "parse": {
@@ -174,235 +115,9 @@
             }
         };
 
-        // Line Chart visualization: Average Weekly Earnings
-        var spec2 = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "width": 500,
-            "height": 400,
-            "title": {
-                "text": "Average Weekly Earnings in Australia (1995-2024)",
-                "fontSize": 20,
-                "font": "sans-serif",
-                "anchor": "middle",
-                "offset": 20
-            },
-            "data": {
-                "url": "https://raw.githubusercontent.com/isut0003/3179/main/average%20weekly%20earning.csv",
-                "format": {
-                    "type": "csv",
-                    "parse": {
-                        "Year": "number",
-                        "Male Weekly Earning": "number",
-                        "Female Weekly Earning": "number"
-                    }
-                }
-            },
-            "transform": [
-                {
-                    "calculate": "datum['Male Weekly Earning'] - datum['Female Weekly Earning']",
-                    "as": "Gap"
-                }
-            ],
-            "layer": [
-                {
-                    "mark": {
-                        "type": "area",
-                        "interpolate": "monotone",
-                        "opacity": 0.3,
-                        "color": "#ffcc80"
-                    },
-                    "encoding": {
-                        "x": { "field": "Year", "type": "quantitative", "title": "Year" },
-                        "y": { "field": "Female Weekly Earning", "type": "quantitative", "title": "Weekly Earning (AUD)" },
-                        "y2": { "field": "Male Weekly Earning" }
-                    }
-                },
-                {
-                    "mark": {
-                        "type": "line",
-                        "interpolate": "monotone",
-                        "color": "#1f91a3"
-                    },
-                    "encoding": {
-                        "x": { "field": "Year", "type": "quantitative" },
-                        "y": { "field": "Male Weekly Earning", "type": "quantitative" }
-                    }
-                },
-                {
-                    "mark": {
-                        "type": "line",
-                        "interpolate": "monotone",
-                        "color": "#ff7f0e"
-                    },
-                    "encoding": {
-                        "x": { "field": "Year", "type": "quantitative" },
-                        "y": { "field": "Female Weekly Earning", "type": "quantitative" }
-                    }
-                },
-                {
-                    "mark": {
-                        "type": "point",
-                        "filled": true,
-                        "size": 50,
-                        "color": "#1f91a3"
-                    },
-                    "encoding": {
-                        "x": { "field": "Year", "type": "quantitative" },
-                        "y": { "field": "Male Weekly Earning", "type": "quantitative" },
-                        "tooltip": [
-                            { "field": "Year", "type": "quantitative", "title": "Year" },
-                            { "field": "Male Weekly Earning", "type": "quantitative", "title": "Male Weekly Earning (AUD)", "format": ".2f" },
-                            { "field": "Female Weekly Earning", "type": "quantitative", "title": "Female Weekly Earning (AUD)", "format": ".2f" },
-                            { "field": "Gap", "type": "quantitative", "title": "Earning Gap (AUD)", "format": ".2f" }
-                        ]
-                    }
-                },
-                {
-                    "mark": {
-                        "type": "point",
-                        "filled": true,
-                        "size": 50,
-                        "color": "#ff7f0e"
-                    },
-                    "encoding": {
-                        "x": { "field": "Year", "type": "quantitative" },
-                        "y": { "field": "Female Weekly Earning", "type": "quantitative" },
-                        "tooltip": [
-                            { "field": "Year", "type": "quantitative", "title": "Year" },
-                            { "field": "Male Weekly Earning", "type": "quantitative", "title": "Male Weekly Earning (AUD)", "format": ".2f" },
-                            { "field": "Female Weekly Earning", "type": "quantitative", "title": "Female Weekly Earning (AUD)", "format": ".2f" },
-                            { "field": "Gap", "type": "quantitative", "title": "Earning Gap (AUD)", "format": ".2f" }
-                        ]
-                    }
-                }
-            ],
-            "config": {
-                "background": "white"
-            }
-        };
-
-        // Bar Chart visualization: Sexual Assault Estimates by Gender
-        var spec3 = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": "Assault data by gender with dropdown filter for state.",
-            "width": 1000,
-            "height": 500,
-            "title": {
-                "text": "Sexual Assault Estimates by Gender in Australian States (2019)",
-                "fontSize": 20,
-                "font": "sans-serif",
-                "anchor": "middle",
-                "offset": 20
-            },
-            "data": {
-                "url": "https://raw.githubusercontent.com/isut0003/3179/main/Female%20Assault.csv",
-                "format": { "type": "csv" }
-            },
-            "params": [
-                {
-                    "name": "stateFilter",
-                    "value": "New South Wales",
-                    "bind": {
-                        "input": "select",
-                        "options": ["New South Wales", "Victoria", "Queensland", "South Australia", "Western Australia", "Tasmania", "Northern Territory", "Australian Capital Territory"],
-                        "name": "Select State: "
-                    }
-                }
-            ],
-            "transform": [
-                {
-                    "filter": "datum.State == stateFilter"
-                },
-                {
-                    "calculate": "replace(datum.Estimate, ',', '')",
-                    "as": "EstimateNum"
-                },
-                {
-                    "calculate": "toNumber(datum.EstimateNum)",
-                    "as": "EstimateValue"
-                }
-            ],
-            "mark": "bar",
-            "encoding": {
-                "x": { "field": "Gender", "type": "nominal", "axis": { "title": "Gender" } },
-                "y": {
-                    "field": "EstimateValue",
-                    "type": "quantitative",
-                    "axis": { "title": "Estimated Number of Sexual Assaults" }
-                },
-                "color": {
-                    "field": "Gender",
-                    "type": "nominal",
-                    "legend": { "title": "Gender" },
-                    "scale": { "range": ["#ff7f0e", "#1f91a3"] }
-                },
-                "tooltip": [
-                    { "field": "State", "type": "nominal", "title": "State" },
-                    { "field": "Gender", "type": "nominal", "title": "Gender" },
-                    { "field": "EstimateValue", "type": "quantitative", "title": "Estimated Assaults", "format": "," }
-                ]
-            },
-            "config": {
-                "background": "white"
-            }
-        };
-
-        var spec4 = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "width": 600,
-            "height": 400,
-            "title": "Feeling Rushed by Age Group",
-            "data": {
-                "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/Feelingrushed.csv",
-                "format": { "type": "csv" }
-            },
-            "transform": [
-                {
-                    "fold": ["Male Percentage", "Female Percentage"],
-                    "as": ["Gender", "Percentage"]
-                }
-            ],
-            "encoding": {
-                "x": {
-                    "field": "Age group",
-                    "type": "ordinal",
-                    "title": "Age Group",
-                    "axis": {
-                        "labelAngle": 0
-                    }
-                },
-                "y": {
-                    "field": "Percentage",
-                    "type": "quantitative",
-                    "title": "Percentage (%)",
-                    "scale": { "domain": [0, 100] }
-                },
-                "color": {
-                    "field": "Gender",
-                    "type": "nominal",
-                    "scale": {
-                        "range": ["#1f91a3", "#ff7f0e"]
-                    },
-                    "legend": { "title": "Gender" }
-                }
-            },
-            "mark": {
-                "type": "area",
-                "interpolate": "monotone"
-            },
-            "tooltip": [
-                { "field": "Age group", "type": "ordinal", "title": "Age Group" },
-                { "field": "Percentage", "type": "quantitative", "title": "Percentage", "format": ".1f" },
-                { "field": "Gender", "type": "nominal", "title": "Gender" }
-            ]
-        };
-
-        // Embed the visualizations into their respective div elements
-        vegaEmbed('#vis1', spec1, { "actions": false }).catch(console.error);
-        vegaEmbed('#vis2', spec2, { "actions": false }).catch(console.error);
-        vegaEmbed('#vis3', spec3, { "actions": false }).catch(console.error);
-        vegaEmbed('#vis4', spec4, { "actions": false }).catch(console.error);
+        // Embed the map visualization into the specified div element
+        vegaEmbed('#vis1', spec1, { "actions": false });
     </script>
 </body>
-
 </html>
+
