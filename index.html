@@ -1,123 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Visualization of Female Employment Ratios</title>
     <title>Female Equal Rights in Australia</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <style>
         body {
+            font-family: 'Arial', sans-serif;
             font-family: 'sans-serif', Arial, Helvetica, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
-        }
-        #vis1 {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        #vis {
+            width: 100%;
+            max-width: 900px; /* Adjusted to fit better on screen */
+        #vis1, #vis2 {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center the graphs horizontally */
+            align-items: center; /* Center the graphs vertically */
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap; /* Allow wrapping for smaller screens */
         }
         .main-title {
             font-size: 28px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 30px;
+            font-family: 'sans-serif', Arial, Helvetica, sans-serif;
+        }
+        .visualization-title {
+            font-family: 'sans-serif', Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <div id="vis"></div>
     <div class="main-title">Female Equal Rights in Australia</div>
-    <div id="vis1"></div> <!-- First visualization (Map) -->
+    <div class="container">
+        <div id="vis1"></div> <!-- First visualization (Map) -->
+        <div id="vis2"></div> <!-- Second visualization (Bar chart) -->
+    </div>
 
     <script>
+        var spec = {
+        // First visualization: Female Employment to Population Ratio Map
         var spec1 = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "width": 800,
+            "height": 450,
             "width": 800, 
             "height": 500,
             "title": {
                 "text": "Female Employment to Population Ratio in Australian States",
+                "fontSize": 24,
+                "font": "Sans Serif", // Changed font to Sans Serif
                 "fontSize": 20,
                 "font": "sans-serif", 
                 "color": "#333",
+                "anchor": "middle", // Title is centered
+                "offset": 20 // Additional space above the map
                 "anchor": "middle",
                 "offset": 20
             },
             "projection": {
                 "type": "mercator"
-            },
-            "params": [
-                {
-                    "name": "yearSelection",
-                    "value": 1988,
-                    "bind": {
-                        "input": "select",
-                        "options": [1988, 1992, 1996, 2000, 2004, 2008, 2012, 2016, 2020, 2024],
-                        "name": "Select Year: "
-                    }
-                }
-            ],
-            "data": {
-                "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/ne_50m-2.topojson",
-                "format": {
-                    "type": "topojson",
-                    "feature": "ne_50m_admin_1_states_provinces"
-                }
-            },
-            "transform": [
-                {
-                    "lookup": "properties.name",
-                    "from": {
-                        "data": {
-                            "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/Employment%20Population%20Female%20by%20year.csv",
-                            "format": {
-                                "type": "csv",
-                                "parse": {
-                                    "Year": "number",
-                                    "Ratio": "number"
-                                }
+@@ -76,9 +97,9 @@
+                        "color": {
+                            "field": "Ratio",
+                            "type": "quantitative",
+                            "title": "Ratio per State (%)", // Updated scale title
+                            "title": "Ratio per State (%)",
+                            "scale": {
+                                "range": ["#FFCC80", "#FF5722"], // Gradient from light orange to orange
+                                "range": ["#FFCC80", "#FF5722"],
+                                "domain": [30, 70]
                             }
                         },
-                        "key": "State",
-                        "fields": ["Ratio", "Year"]
-                    }
-                },
-                {
-                    "filter": "datum.Year == yearSelection"
-                }
-            ],
-            "mark": {
-                "type": "geoshape",
-                "stroke": "white"
-            },
-            "encoding": {
-                "color": {
-                    "field": "Ratio",
-                    "type": "quantitative",
-                    "title": "Employment Ratio (%)",
-                    "scale": {
-                        "range": ["#FFCC80", "#FF5722"],
-                        "domain": [30, 70]
-                    }
-                },
-                "tooltip": [
-                    { "field": "properties.name", "type": "nominal", "title": "State" },
-                    { "field": "Ratio", "type": "quantitative", "format": ".1f", "title": "Employment Ratio (%)" },
-                    { "field": "Year", "type": "quantitative", "title": "Year" }
-                ]
-            },
-            "config": {
-                "background": "white",
-                "view": { "stroke": "transparent" }
+@@ -109,7 +130,104 @@
             }
         };
 
-        // Embed the map visualization into the specified div element
+        vegaEmbed('#vis', spec, { "actions": false });
+        // Second visualization: Assault Data by Gender Bar Chart
+        var spec2 = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "description": "Assault data by gender with dropdown filter for state.",
+            "width": 500, 
+            "height": 500,
+            "title": {
+                "text": "Sexual Assault Estimates by Gender in Australian States 2019",
+                "fontSize": 20,
+                "font": "sans-serif",
+                "fontWeight": "bold",
+                "anchor": "middle",
+                "color": "#333"
+            },
+            "data": {
+                "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/Female%20Assault.csv",
+                "format": { "type": "csv" }
+            },
+            "params": [
+                {
+                    "name": "stateFilter",
+                    "value": "New South Wales",
+                    "bind": {
+                        "input": "select",
+                        "options": ["New South Wales", "Victoria", "Queensland", "South Australia", "Western Australia", "Tasmania", "Northern Territory", "Australian Capital Territory"],
+                        "labels": ["New South Wales", "Victoria", "Queensland", "South Australia", "Western Australia", "Tasmania", "Northern Territory", "Australian Capital Territory"],
+                        "name": "State"
+                    }
+                }
+            ],
+            "transform": [
+                {
+                    "calculate": "replace(datum.Estimate, ',', '')", 
+                    "as": "Estimate"
+                },
+                {
+                    "filter": "datum.State == stateFilter"
+                }
+            ],
+            "layer": [
+                {
+                    "mark": "bar",
+                    "encoding": {
+                        "x": { "field": "Gender", "type": "nominal", "axis": { "title": "Gender", "titleFont": "sans-serif", "labelFont": "sans-serif" }},
+                        "y": { 
+                            "field": "Estimate", 
+                            "type": "quantitative", 
+                            "axis": { "title": "Estimated Number of Sexual Assaults", "titleFont": "sans-serif", "labelFont": "sans-serif" },
+                            "scale": { "domain": [0, 15000] }
+                        },
+                        "color": {
+                            "field": "Gender", 
+                            "type": "nominal", 
+                            "legend": { "title": "Gender", "titleFont": "sans-serif", "labelFont": "sans-serif" },  
+                            "scale": {"range": ["#ff7f0e", "#1f91a3"]}
+                        },
+                        "tooltip": [
+                            {"field": "State", "type": "nominal", "title": "State"},
+                            {"field": "Gender", "type": "nominal", "title": "Gender"},
+                            {"field": "Estimate", "type": "quantitative", "title": "Estimated Assaults", "format": ","}
+                        ]
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "rect",
+                        "color": "#f0f0f0",
+                        "stroke": "lightgrey",
+                        "strokeWidth": 1
+                    },
+                    "encoding": {
+                        "x": { "value": 50 },
+                        "x2": { "value": 450 },
+                        "y": { "value": 20 },
+                        "y2": { "value": 60 }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "color": "black",
+                        "fontSize": 12,
+                        "align": "center",
+                        "dx": 0,
+                        "dy": -10
+                    },
+                    "encoding": {
+                        "x": { "value": 250 },
+                        "y": { "value": 45 },
+                        "text": { "value": "Female assaults are significantly higher than male assaults in all states" }
+                    }
+                }
+            ]
+        };
+        // Embed both visualizations into the respective div elements
         vegaEmbed('#vis1', spec1, { "actions": false });
+        vegaEmbed('#vis2', spec2, { "actions": false });
     </script>
 </body>
 </html>
-
