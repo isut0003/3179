@@ -1,0 +1,65 @@
+﻿Gender,Country,Year,Rate
+Female,Australia,1995,53.60
+Female,Australia,1999,53.60
+Female,Australia,2003,55.90
+Female,Australia,2007,58.10
+Female,Australia,2011,58.90
+Female,Australia,2015,59.10
+Female,Australia,2019,61.00
+Female,Australia,2023,61.60
+Male,Australia,1995,73.80
+Male,Australia,1999,72.20
+Male,Australia,2003,71.50
+Male,Australia,2007,72.50
+Male,Australia,2011,72.20
+Male,Australia,2015,71.10
+Male,Australia,2019,71.10
+Male,Australia,2023,71.40
+Female,East Asia & Pacific,1995,65.70
+Female,East Asia & Pacific,1999,64.90
+Female,East Asia & Pacific,2003,63.00
+Female,East Asia & Pacific,2007,61.60
+Female,East Asia & Pacific,2011,60.30
+Female,East Asia & Pacific,2015,59.70
+Female,East Asia & Pacific,2019,59.20
+Female,East Asia & Pacific,2023,58.60
+Male,East Asia & Pacific,1995,82.50
+Male,East Asia & Pacific,1999,81.60
+Male,East Asia & Pacific,2003,80.40
+Male,East Asia & Pacific,2007,79.00
+Male,East Asia & Pacific,2011,77.80
+Male,East Asia & Pacific,2015,76.30
+Male,East Asia & Pacific,2019,74.50
+Male,East Asia & Pacific,2023,73.60
+Female,High Income,1995,50.30
+Female,High Income,1999,51.20
+Female,High Income,2003,51.40
+Female,High Income,2007,52.40
+Female,High Income,2011,52.50
+Female,High Income,2015,52.80
+Female,High Income,2019,53.80
+Female,High Income,2023,54.40
+Male,High Income,1995,71.10
+Male,High Income,1999,70.40
+Male,High Income,2003,69.30
+Male,High Income,2007,69.40
+Male,High Income,2011,68.70
+Male,High Income,2015,68.60
+Male,High Income,2019,68.70
+Male,High Income,2023,68.20
+Female,World,1995,50.50
+Female,World,1999,50.60
+Female,World,2003,50.00
+Female,World,2007,49.60
+Female,World,2011,48.60
+Female,World,2015,48.20
+Female,World,2019,48.00
+Female,World,2023,48.70
+Male,World,1995,78.10
+Male,World,1999,78.00
+Male,World,2003,76.70
+Male,World,2007,75.90
+Male,World,2011,75.20
+Male,World,2015,74.20
+Male,World,2019,73.10
+Male,World,2023,73.10
