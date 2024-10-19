@@ -1,7 +1,7 @@
 /* General body styling */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Georgia, sans-serif;
 }
 
 /* Section styling */
@@ -24,6 +24,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
 }
 
 .section1 .tech-news {
@@ -133,6 +134,8 @@ body {
     height: 85vh;
     padding: 30px;
     box-sizing: border-box;
+    
+    
 }
 
 /* Map and region button container */
@@ -203,26 +206,22 @@ body {
 .explanation-container {
     width: 100%;
     max-width: 1150px;
-    background-color: #fff;
+    background-color: #ffffff;
     padding: 20px;
     margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    text-align: justify;
 }
 
-.explanation-container h2 {
-    font-family: 'Georgia', serif;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
 
 .explanation-container p {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Georgia', sans-serif;
     color: #555;
-    font-size: 16px;
+    font-size: 1.125rem;
     line-height: 1.5;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 /* Style the year selection slider */
@@ -289,7 +288,7 @@ label {
 h1 {
     font-size: 2rem;
     font-weight: bold;
-    color: #111827;
+    color: #292b2e;
     margin-bottom: 2rem;
     text-align: center; /* Center the title */
 }
@@ -360,7 +359,7 @@ h2 {
 .section4 {
     height: auto;
     margin: 0 auto;
-    background-color: #f2ebdf; /* Match background color to Section 3 */
+    background-color: #ead9bc; /* Match background color to Section 3 */
     padding-bottom: 2rem; /* Add padding at the bottom */
 }
 
@@ -413,5 +412,18 @@ h2 {
 
 
 .section5 {
-    background-color: #4a617d;
+    height: 6vh;
+    margin: 0 auto;
+    background-color: #466681; /* Keep the blue background color */
+    color: white; /* Use white text for better contrast */
+    text-align: center; /* Center align the text */
+}
+
+/* Styling each paragraph in Section 5 */
+.section5 p {
+    font-size: 1rem; /* Adjust the font size */
+    margin-bottom: 1rem; /* Add space below each paragraph */
+    line-height: 1.5; /* Line spacing for readability */
+    display: block; /* Ensure each paragraph is displayed as a block */
+    margin-top: 0; /* Remove any extra top margin */
 }
