@@ -21,7 +21,7 @@
             <h2 class="tech-news">AUSTRALIA NEWS</h2>
             <hr class="divider">
             <h3 class="breaking-news">BREAKING NEWS</h3>
-            <h1 class="headline">Have Female Treated Equally <br> And Feeling Safe ?</h1>
+            <h1 class="headline">Have Female Been Treated Equally <br> And Feeling Safe ?</h1>
         </div>
     </div>
 
@@ -46,30 +46,30 @@
 
         <!-- Explanation Section -->
         <div class="explanation-container">
-            <h2>Explanation of the Map</h2>
             <p>
-                This map shows the female population ratio across various regions of the world from 1960 to 2022.
-                You can use the year selection slider to explore the changes over time. The regions are color-coded
-                based on
-                the percentage of the population that is female. The darker colors indicate a higher percentage of
-                females in the population.
+                The historical perception of females as inferior is reflected in population distributions. This map
+                shows the female population ratio globally from 1960 to 2022. In 1960, many countries had fewer females
+                compared to males.
+                Over time, the female population has grown. For instance, Australia had a male-dominated population
+                until 1978 but now has a balanced gender ratio. We will further explore female labor force
+                participation, earnings, and perceptions of safety in Australia.
             </p>
         </div>
     </div>
 
     <script type="text/javascript">
-        // Define the base specification for the map
+
         let spec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
                 "text": "Female Population Ratio by Country (1960-2022)",
-                "font": "Georgia",         // Specify the font you want
-                "fontSize": 20,            // Adjust the font size
-                "fontWeight": "bold",      // Optional: Set the weight to bold
-                "anchor": "start",         // Optional: Align to the start, center, or end
+                "font": "Georgia",
+                "fontSize": 20,
+                "fontWeight": "bold",
+                "anchor": "start",
                 "color": "#4F4F4F",
                 "dy": -10
-                // Optional: Set the color
+
             },
             "width": 700,
             "height": 400,
@@ -143,7 +143,7 @@
                             "type": "nominal",
                             "scale": {
                                 "domain": ["<= 46%", "46-50%", "50-52%", "52-54%", "> 54%"],
-                                "range": ["#2A3B60", "#4A617D", "#EDE2D0", "#8B1A1A", "#C94C4C"]
+                                "range": ["#2A3B60", "#4A617D", "#EDE2D0", "#C94C4C", "#8B1A1A"]
                             },
                             "legend": {
                                 "title": "Female Population (%)"
@@ -209,10 +209,10 @@
     <!-- Section 3: Labour Force Participation Section -->
     <div class="section section3">
         <div class="inner-container">
-            <h1>Female Employability in Australia</h1>
+            <h1>Female Employability Rights In Australia</h1>
 
             <!-- Labor Force Participation Graphs (Each in its own card) -->
-            <!-- Labor Force Participation Graphs (Each in its own card) -->
+
             <div class="card">
                 <div class="card-body">
                     <div id="graphs"></div> <!-- Line charts will be here -->
@@ -223,17 +223,14 @@
             <div class="card">
                 <div class="card-body">
                     <p class="text-content">
-                        The graphs above show the Labor Force Participation Rate by Sex for Australia, East Asia &
-                        Pacific,
-                        High Income countries, and the World. These visualizations help us understand the trends in
-                        female
-                        employability across different regions and how Australia compares to global averages.
+                        From the graph, we can see how Australia has less gap between male and female labour participation compared to the other.
+                        On average, female still have a lower labour force participation which can be improved in the future.
                     </p>
                 </div>
             </div>
 
             <!-- Bubble Plot (Same Layout as Above) -->
-            <h1>Female Employability in Australia</h1>
+        
             <div class="card">
                 <div class="card-body">
                     <div id="bubblePlot"></div> <!-- Bubble plot will be here -->
@@ -244,13 +241,14 @@
             <div class="card">
                 <div class="card-body">
                     <p class="text-content">
-                        The above bubble plot visualizes Female Labor Force Participation vs. Unpaid Domestic Work for
-                        different countries. The bubble size represents the Happiness Score, categorized into Low,
-                        Medium, and High. This visualization helps highlight the relationship between labor force
-                        participation and the burden of unpaid work across various countries, including Australia.
+                        This scatter plot illustrates the relationship between female labor force participation and the ratio of female-to-male unpaid domestic work across various countries. 
+                        Generally, countries with higher ratios of unpaid domestic work for women tend to have lower female labor force participation. 
+                        Australia's position is notable for having a relatively high labor force participation rate despite a moderate burden of unpaid work, reflecting ongoing gender disparities in work responsibilities.
                     </p>
                 </div>
             </div>
+
+            <h1>Female Weekly Earning in Australia</h1>
 
             <!-- Employment Ratio Map and Weekly Earnings Donut Chart side by side -->
             <div class="grid">
@@ -275,15 +273,14 @@
             <div class="card">
                 <div class="card-body">
                     <p class="text-content">
-                        The map and chart side by side provide a detailed look at the employment ratio for females
-                        across different Australian states. The employment rate can be explored for various years,
-                        highlighting trends and comparing them with the overall average weekly earnings for males and
-                        females across Australia.
+                        From both the employment participation and average weekly earning pay gap, we can see how Female's employment participation has increased within the year.
+                        Although female's weekly earning keep on increasing, it goes the same for the male and it is creating a signigicant and consistent gap which makes it unfair for 
+                        working women in Australia.
                     </p>
                 </div>
             </div>
 
-        
+
 
         </div>
     </div>
@@ -348,7 +345,7 @@
                             "title": "Happiness Category",
                             "scale": {
                                 "domain": ["Low", "Medium", "High"],
-                                "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
+                                "range": ["#4A617D", "#C94C4C", "#8B1A1A"]
                             }
                         },
                         "stroke": {
@@ -420,7 +417,7 @@
                                     "type": "nominal",
                                     "scale": {
                                         "domain": ["Female", "Male"],
-                                        "range": ["#FFA500", "#800080"]
+                                        "range": ["#8B1A1A", "#2A3B60"]
                                     },
                                     "title": "Sex"
                                 },
@@ -459,7 +456,7 @@
                                     "type": "nominal",
                                     "scale": {
                                         "domain": ["Female", "Male"],
-                                        "range": ["#FFA500", "#800080"]
+                                        "range": ["#8B1A1A", "#2A3B60"]
                                     },
                                     "title": "Sex"
                                 },
@@ -502,7 +499,7 @@
                                     "type": "nominal",
                                     "scale": {
                                         "domain": ["Female", "Male"],
-                                        "range": ["#FFA500", "#800080"]
+                                        "range": ["#8B1A1A", "#2A3B60"]
                                     },
                                     "title": "Sex"
                                 },
@@ -541,7 +538,7 @@
                                     "type": "nominal",
                                     "scale": {
                                         "domain": ["Female", "Male"],
-                                        "range": ["#FFA500", "#800080"]
+                                        "range": ["#8B1A1A", "#2A3B60"]
                                     },
                                     "title": "Sex"
                                 },
@@ -630,7 +627,7 @@
                     "type": "quantitative",
                     "title": "Employment Ratio (%)",
                     "scale": {
-                        "range": ["#FFCC80", "#FF5722"],
+                        "range": ["#f2ebdf", "#8B1A1A"],
                         "domain": [30, 70]
                     }
                 },
@@ -679,7 +676,7 @@
                     "type": "nominal",
                     "scale": {
                         "domain": ["Male", "Female"],
-                        "range": ["#FF5722", "#FFA500"]
+                        "range": ["#2A3B60", "#8B1A1A"]
                     },
                     "title": "Gender"
                 },
@@ -739,7 +736,7 @@
                             "field": "Male Weekly Earning"
                         },
                         "color": {
-                            "value": "#ffcc80"
+                            "value": "#2A3B60"
                         },
                         "opacity": {
                             "value": 0.3
@@ -758,7 +755,7 @@
                             "type": "quantitative"
                         },
                         "color": {
-                            "value": "#1f91a3"
+                            "value": "#2A3B60"
                         },
                         "tooltip": [
                             { "field": "Year", "type": "ordinal", "title": "Year" },
@@ -783,7 +780,7 @@
                             "type": "quantitative"
                         },
                         "color": {
-                            "value": "#ff7f0e"
+                            "value":  "#8B1A1A"
                         },
                         "tooltip": [
                             { "field": "Year", "type": "ordinal", "title": "Year" },
@@ -854,7 +851,7 @@
                             "type": "quantitative"
                         },
                         "color": {
-                            "value": "#ff7f0e"
+                            "value":  "#8B1A1A"
                         }
                     }
                 }
@@ -894,49 +891,52 @@
     </script>
 
 
-<!-- Section 4: Sexual Assaults and Feeling Rushed Section -->
-<div class="section section4">
-    <div class="inner-container">
-        <h1>Sexual Assaults and Feeling Rushed in Australia</h1>
+    <!-- Section 4: Sexual Assaults and Feeling Rushed Section -->
+    <div class="section section4">
+        <div class="inner-containerx">
+            <h1>Female Safety in Australia</h1>
 
-        <!-- Sexual Assaults Chart (Card) -->
-        <div class="card">
-            <div class="card-body">
-                <div id="assaultChart"></div> <!-- Sexual Assaults by Gender and State chart will be here -->
+            <!-- Sexual Assaults Chart (Card) -->
+            <div class="card">
+                <div class="card-body">
+                    <div id="assaultChart"></div> <!-- Sexual Assaults by Gender and State chart will be here -->
+                </div>
             </div>
-        </div>
 
-        <!-- Explanation Text for Sexual Assaults Chart (Separate Card) -->
-        <div class="card">
-            <div class="card-body">
-                <p class="text-content">
-                    The chart above shows the percentage distribution of sexual assaults by gender across various states in Australia. This visualization highlights the disparities in reported cases involving males and females across the states.
-                </p>
+            <!-- Explanation Text for Sexual Assaults Chart (Separate Card) -->
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-content">
+                        The chart above shows a huge percentage different on how many female getting sexually assaults compared to male.
+                        This shows how female in Australia might feel unsafe due to a high sexual assaults crime in every state.
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <!-- Feeling Rushed Chart (Card) -->
-        <div class="card">
-            <div class="card-body">
-                <div id="feelingRushedChart"></div> <!-- Feeling Rushed by Age Group and Gender chart will be here -->
+            <!-- Feeling Rushed Chart (Card) -->
+            <div class="card">
+                <div class="card-body">
+                    <div id="feelingRushedChart"></div>
+                    <!-- Feeling Rushed by Age Group and Gender chart will be here -->
+                </div>
             </div>
-        </div>
 
-        <!-- Explanation Text for Feeling Rushed Chart (Separate Card) -->
-        <div class="card">
-            <div class="card-body">
-                <p class="text-content">
-                    The chart above visualizes the percentage of males and females feeling rushed, categorized by age group. This helps us understand the distribution of stress across different age demographics and gender groups.
-                </p>
+            <!-- Explanation Text for Feeling Rushed Chart (Separate Card) -->
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-content">
+                        The chart above visualizes the percentage of female who feel rushed in doing their daily routine. We can see that between every age range,
+                        more female are feeling rushed in doing and multitasking many task.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
+    <script>
 
-const assaultSpec = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        const assaultSpec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
                 "text": "Sexual Assaults by Gender and State",
                 "fontSize": 18,
@@ -977,7 +977,7 @@ const assaultSpec = {
                     "title": "Gender",
                     "scale": {
                         "domain": ["Male", "Female"],
-                        "range": ["#1f77b4", "#ff7f0e"]
+                        "range": ["#2A3B60", "#8B1A1A"]
                     }
                 },
                 "tooltip": [
@@ -986,77 +986,100 @@ const assaultSpec = {
                     { "field": "Estimate", "type": "quantitative", "title": "Percentage of Assaults (%)", "format": ".2f" }
                 ]
             }
-    };
+        };
 
-    const feelingRushedSpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Feeling Rushed by Age Group and Gender",
-    "fontSize": 18,
-    "font": "sans-serif",
-    "color": "#333",
-    "anchor": "middle",
-    "offset": 10
-  },
-  "width": 400,
-  "height": 300,
-  "data": {
-    "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/Feelingrushed.csv",
-    "format": { "type": "csv" }
-  },
-  "transform": [
-    {
-      "fold": ["Male Percentage", "Female Percentage"],
-      "as": ["Gender", "Percentage"]
-    },
-    {
-      "calculate": "datum.Gender == 'Male Percentage' ? -datum.Percentage : datum.Percentage",
-      "as": "Adjusted Percentage"
-    }
-  ],
-  "mark": "bar",
-  "encoding": {
-    "y": {
-      "field": "Age group",
-      "type": "nominal",
-      "title": "Age Group",
-      "sort": "ascending"
-    },
-    "x": {
-      "field": "Adjusted Percentage",
-      "type": "quantitative",
-      "title": "Male (%), Female (%)",
-      "axis": {
-        "format": ".1f",
-        "labelExpr": "datum.value < 0 ? format(-datum.value, '.1f') : format(datum.value, '.1f')"
-      }
-    },
-    "color": {
-      "field": "Gender",
-      "type": "nominal",
-      "scale": {
-        "domain": ["Male Percentage", "Female Percentage"],
-        "range": ["#8da0cb", "#fc8d62"]
-      },
-      "title": "Gender"
-    },
-    "tooltip": [
-      { "field": "Age group", "type": "nominal", "title": "Age Group" },
-      { "field": "Gender", "type": "nominal", "title": "Gender" },
-      { "field": "Percentage", "type": "quantitative", "title": "Percentage (%)", "format": ".1f" }
-    ]
-  }
-};
+        const feelingRushedSpec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "title": {
+                "text": "Feeling Rushed by Age Group and Gender",
+                "fontSize": 18,
+                "font": "sans-serif",
+                "color": "#333",
+                "anchor": "middle",
+                "offset": 10
+            },
+            "width": 400,
+            "height": 300,
+            "data": {
+                "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/Feelingrushed.csv",
+                "format": { "type": "csv" }
+            },
+            "transform": [
+                {
+                    "fold": ["Male Percentage", "Female Percentage"],
+                    "as": ["Gender", "Percentage"]
+                },
+                {
+                    "calculate": "datum.Gender == 'Male Percentage' ? -datum.Percentage : datum.Percentage",
+                    "as": "Adjusted Percentage"
+                }
+            ],
+            "mark": "bar",
+            "encoding": {
+                "y": {
+                    "field": "Age group",
+                    "type": "nominal",
+                    "title": "Age Group",
+                    "sort": "ascending"
+                },
+                "x": {
+                    "field": "Adjusted Percentage",
+                    "type": "quantitative",
+                    "title": "Male (%), Female (%)",
+                    "axis": {
+                        "format": ".1f",
+                        "labelExpr": "datum.value < 0 ? format(-datum.value, '.1f') : format(datum.value, '.1f')"
+                    }
+                },
+                "color": {
+                    "field": "Gender",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": ["Male Percentage", "Female Percentage"],
+                        "range": ["#2A3B60", "#8B1A1A"]
+                    },
+                    "title": "Gender"
+                },
+                "tooltip": [
+                    { "field": "Age group", "type": "nominal", "title": "Age Group" },
+                    { "field": "Gender", "type": "nominal", "title": "Gender" },
+                    { "field": "Percentage", "type": "quantitative", "title": "Percentage (%)", "format": ".1f" }
+                ]
+            }
+        };
 
 
-    // Embed the Vega-Lite specifications for Section 4 charts
-    vegaEmbed('#assaultChart', assaultSpec);
-    vegaEmbed('#feelingRushedChart', feelingRushedSpec);
-</script>
+        // Embed the Vega-Lite specifications for Section 4 charts
+        vegaEmbed('#assaultChart', assaultSpec);
+        vegaEmbed('#feelingRushedChart', feelingRushedSpec);
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Section 5 -->
     <div class="section section5">
-        <h1>Section 5</h1>
+        <p>Author : Irene Sutanto</p>
+        <p>Date : 12 October 2024</p>
+        <p>Data : Australian Bureau Statistic (Gender indicator), World Bank Data</p>
+
     </div>
 
 
