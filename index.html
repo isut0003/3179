@@ -146,7 +146,14 @@
                                 "range": ["#2A3B60", "#4A617D", "#EDE2D0", "#C94C4C", "#8B1A1A"]
                             },
                             "legend": {
-                                "title": "Female Population (%)"
+                                "title": "Female Population Ratio (%)",
+                                "titleFontSize": 12,
+                                "labelFontSize": 14,
+                                "titleFont": "Georgia",
+                                "labelFont": "Georgia",
+                                "titleColor": "#4F4F4F",
+                                "labelColor": "#4F4F4F"
+                                
                             }
                         },
                         "tooltip": [
@@ -158,7 +165,7 @@
                             {
                                 "field": "Population Female",
                                 "type": "quantitative",
-                                "title": "Female Population (%)"
+                                "title": "Female Population Ratio (%)"
                             },
                             {
                                 "field": "Year",
@@ -209,7 +216,13 @@
     <!-- Section 3: Labour Force Participation Section -->
     <div class="section section3">
         <div class="inner-container">
-            <h1>Female Employability Rights In Australia</h1>
+
+            <div class="card-header">
+
+                <h1>Female <span style="color: rgb(219, 78, 78);">Labour Participation</span> In Australia</h1>
+
+
+            </div>
 
             <!-- Labor Force Participation Graphs (Each in its own card) -->
 
@@ -219,36 +232,55 @@
                 </div>
             </div>
 
+
+
+
             <!-- Explanation Text (Separate Card) -->
             <div class="card">
                 <div class="card-body">
                     <p class="text-content">
-                        From the graph, we can see how Australia has less gap between male and female labour participation compared to the other.
-                        On average, female still have a lower labour force participation which can be improved in the future.
+                        From the graph, we can see how Australia has less gap between male and female labour
+                        participation compared to the other.
+                        On average, female still have a lower labour force participation which can be improved in the
+                        future.
                     </p>
                 </div>
             </div>
 
             <!-- Bubble Plot (Same Layout as Above) -->
-        
+
             <div class="card">
                 <div class="card-body">
                     <div id="bubblePlot"></div> <!-- Bubble plot will be here -->
                 </div>
             </div>
 
+
+
+
             <!-- Explanation Text for Bubble Plot (Separate Card) -->
             <div class="card">
                 <div class="card-body">
                     <p class="text-content">
-                        This scatter plot illustrates the relationship between female labor force participation and the ratio of female-to-male unpaid domestic work across various countries. 
-                        Generally, countries with higher ratios of unpaid domestic work for women tend to have lower female labor force participation. 
-                        Australia's position is notable for having a relatively high labor force participation rate despite a moderate burden of unpaid work, reflecting ongoing gender disparities in work responsibilities.
+                        This scatter plot illustrates the relationship between female labor force participation and the
+                        ratio of female-to-male unpaid domestic work across various countries.
+                        Generally, countries with higher ratios of unpaid domestic work for women tend to have lower
+                        female labor force participation.
+                        Australia's position is notable for having a relatively high labor force participation rate
+                        despite a moderate burden of unpaid work, reflecting ongoing gender disparities in work
+                        responsibilities.
                     </p>
                 </div>
             </div>
 
-            <h1>Female Weekly Earning in Australia</h1>
+
+
+            <div class="card-header">
+
+                <h1>Female <span style="color: rgb(219, 78, 78);"> Employability Rights</span> In Australia</h1>
+
+
+            </div>
 
             <!-- Employment Ratio Map and Weekly Earnings Donut Chart side by side -->
             <div class="grid">
@@ -273,8 +305,10 @@
             <div class="card">
                 <div class="card-body">
                     <p class="text-content">
-                        From both the employment participation and average weekly earning pay gap, we can see how Female's employment participation has increased within the year.
-                        Although female's weekly earning keep on increasing, it goes the same for the male and it is creating a signigicant and consistent gap which makes it unfair for 
+                        From both the employment participation and average weekly earning pay gap, we can see how
+                        Female's employment participation has increased within the year.
+                        Although female's weekly earning keep on increasing, it goes the same for the male and it is
+                        creating a signigicant and consistent gap which makes it unfair for
                         working women in Australia.
                     </p>
                 </div>
@@ -287,17 +321,20 @@
 
     <script>
 
+
+
         const bubblePlotSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
                 "text": "Female Labor Force Participation vs. Unpaid Domestic Work",
-                "fontSize": 18,
-                "font": "sans-serif",
-                "color": "#333",
-                "anchor": "middle",
-                "offset": 10
+                "font": "Georgia",
+                "fontSize": 20,
+                "fontWeight": "bold",
+                "anchor": "start",
+                "color": "#4F4F4F",
+                "dy": -10
             },
-            "width": 600,
+            "width": 800,
             "height": 600,
             "data": {
                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/unpaidwork.csv",
@@ -309,8 +346,26 @@
                     "as": "Happiness Category"
                 }
             ],
+            "params": [
+                {
+                    "name": "happinessFilter",
+                    "bind": {
+                        "input": "select",
+                        "options": ["All", "Low", "Medium", "High"],
+                        "labels": ["All", "Low", "Medium", "High"],
+                        "name": "Filter by Happiness Category: ",
+                        "inputStyle": "font-family: Georgia; font-size: 14px; padding: 5px;"
+                    },
+                    "value": "All"
+                }
+            ],
             "layer": [
                 {
+                    "transform": [
+                        {
+                            "filter": "happinessFilter == 'All' || datum['Happiness Category'] == happinessFilter"
+                        }
+                    ],
                     "mark": {
                         "type": "point",
                         "filled": true
@@ -321,14 +376,26 @@
                             "type": "quantitative",
                             "title": "Ratio of Female-to-Male Unpaid Domestic Work",
                             "scale": { "domain": [0, 13] },
-                            "axis": { "tickMinStep": 1 }
+                            "axis": {
+                                "tickMinStep": 1,
+                                "labelFont": "Georgia",
+                                "titleFont": "Georgia",
+                                "titleColor": "#000000",
+                                "labelColor": "#4F4F4F"
+                            }
                         },
                         "y": {
                             "field": "Female Participation",
                             "type": "quantitative",
                             "title": "Female Labor Force Participation (%)",
                             "scale": { "domain": [0, 90] },
-                            "axis": { "labelOverlap": "false" }
+                            "axis": {
+                                "labelOverlap": "false",
+                                "labelFont": "Georgia",
+                                "titleFont": "Georgia",
+                                "titleColor": "#000000",
+                                "labelColor": "#4F4F4F"
+                            }
                         },
                         "size": {
                             "field": "Happiness Category",
@@ -343,9 +410,17 @@
                             "field": "Happiness Category",
                             "type": "nominal",
                             "title": "Happiness Category",
+                            "legend": {
+                                "titleFontSize": 16,
+                                "labelFontSize": 14,
+                                "titleFont": "Georgia",
+                                "labelFont": "Georgia",
+                                "titleColor": "#4F4F4F",
+                                "labelColor": "#4F4F4F"
+                            },
                             "scale": {
                                 "domain": ["Low", "Medium", "High"],
-                                "range": ["#4A617D", "#C94C4C", "#8B1A1A"]
+                                "range": ["#F4A8A8", "#D96464", "#8B1A1A"]
                             }
                         },
                         "stroke": {
@@ -377,28 +452,78 @@
                             "title": "Female Labor Force Participation (%)"
                         }
                     }
+                },
+                {
+                    "mark": {
+                        "type": "rect",
+                        "color": "#f0f0f0",
+                        "stroke": "lightgrey",
+                        "strokeWidth": 1
+                    },
+                    "encoding": {
+                        "x": { "value": 50 },
+                        "x2": { "value": 600 },
+                        "y": { "value": 20 },
+                        "y2": { "value": 60 }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "color": "black",
+                        "fontSize": 12,
+                        "align": "center",
+                        "dx": 0,
+                        "dy": -10
+                    },
+                    "encoding": {
+                        "x": { "value": 300 },
+                        "y": { "value": 45 },
+                        "text": { "value": "Female labor force participation is inversely related to unpaid domestic work." }
+                    }
                 }
             ]
-        };
+        }
+            ;
+
+
+
         const graphsSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
                 "text": "Labor Force Participation Rate by Sex (% of population 15+)",
-                "font": "sans-serif"
+                "font": "Georgia",
+                "fontSize": 20,
+                "fontWeight": "bold",
+                "anchor": "start",
+                "color": "#4F4F4F",
+                "dy": -10
             },
             "vconcat": [
                 {
                     "hconcat": [
                         {
-                            "title": "Australia",
-                            "width": 250,
+                            "title": {
+                                "text": "Australia",
+                                "subtitle": "Female participation rate shows gradual increase compared to male",
+                                "subtitleFont": "Georgia",
+                                "subtitleFontSize": 12,
+                                "subtitleFontWeight": "normal",
+                                "subtitleColor": "#4F4F4F",
+                                "anchor": "start"
+                            },
+                            "width": 400,
                             "height": 200,
                             "data": {
                                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/labourparticipation.csv",
                                 "format": { "type": "csv" }
                             },
                             "transform": [{ "filter": "datum.Country == 'Australia'" }],
-                            "mark": "line",
+                            "mark": {
+                                "type": "line",
+                                "point": true,
+                                "tooltip": true
+                            },
                             "encoding": {
                                 "x": {
                                     "field": "Year",
@@ -419,7 +544,17 @@
                                         "domain": ["Female", "Male"],
                                         "range": ["#8B1A1A", "#2A3B60"]
                                     },
-                                    "title": "Sex"
+                                    "title": "Sex",
+                                    "legend": {
+                                        "symbolType": "stroke",
+                                        "symbolStrokeWidth": 4,
+                                        "labelFont": "Georgia",
+                                        "labelFontSize": 12,
+                                        "titleFont": "Georgia",
+                                        "titleFontSize": 14,
+                                        "titleColor": "#4F4F4F",
+                                        "labelColor": "#4F4F4F"
+                                    }
                                 },
                                 "tooltip": [
                                     { "field": "Year", "type": "ordinal", "title": "Year" },
@@ -429,15 +564,27 @@
                             }
                         },
                         {
-                            "title": "East Asia & Pacific",
-                            "width": 250,
+                            "title": {
+                                "text": "East Asia & Pacific",
+                                "subtitle": "The participation rate for both genders shows a steady decline",
+                                "subtitleFont": "Georgia",
+                                "subtitleFontSize": 12,
+                                "subtitleFontWeight": "normal",
+                                "subtitleColor": "#4F4F4F",
+                                "anchor": "start"
+                            },
+                            "width": 400,
                             "height": 200,
                             "data": {
                                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/labourparticipation.csv",
                                 "format": { "type": "csv" }
                             },
                             "transform": [{ "filter": "datum.Country == 'East Asia & Pacific'" }],
-                            "mark": "line",
+                            "mark": {
+                                "type": "line",
+                                "point": true,
+                                "tooltip": true
+                            },
                             "encoding": {
                                 "x": {
                                     "field": "Year",
@@ -458,7 +605,17 @@
                                         "domain": ["Female", "Male"],
                                         "range": ["#8B1A1A", "#2A3B60"]
                                     },
-                                    "title": "Sex"
+                                    "title": "Sex",
+                                    "legend": {
+                                        "symbolType": "stroke",
+                                        "symbolStrokeWidth": 4,
+                                        "labelFont": "Georgia",
+                                        "labelFontSize": 12,
+                                        "titleFont": "Georgia",
+                                        "titleFontSize": 14,
+                                        "titleColor": "#4F4F4F",
+                                        "labelColor": "#4F4F4F"
+                                    }
                                 },
                                 "tooltip": [
                                     { "field": "Year", "type": "ordinal", "title": "Year" },
@@ -472,15 +629,27 @@
                 {
                     "hconcat": [
                         {
-                            "title": "High Income",
-                            "width": 250,
+                            "title": {
+                                "text": "High Income",
+                                "subtitle": "Participation rate remains relatively high for males, stable for females",
+                                "subtitleFont": "Georgia",
+                                "subtitleFontSize": 12,
+                                "subtitleFontWeight": "normal",
+                                "subtitleColor": "#4F4F4F",
+                                "anchor": "start"
+                            },
+                            "width": 400,
                             "height": 200,
                             "data": {
                                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/labourparticipation.csv",
                                 "format": { "type": "csv" }
                             },
                             "transform": [{ "filter": "datum.Country == 'High Income'" }],
-                            "mark": "line",
+                            "mark": {
+                                "type": "line",
+                                "point": true,
+                                "tooltip": true
+                            },
                             "encoding": {
                                 "x": {
                                     "field": "Year",
@@ -501,7 +670,17 @@
                                         "domain": ["Female", "Male"],
                                         "range": ["#8B1A1A", "#2A3B60"]
                                     },
-                                    "title": "Sex"
+                                    "title": "Sex",
+                                    "legend": {
+                                        "symbolType": "stroke",
+                                        "symbolStrokeWidth": 4,
+                                        "labelFont": "Georgia",
+                                        "labelFontSize": 12,
+                                        "titleFont": "Georgia",
+                                        "titleFontSize": 14,
+                                        "titleColor": "#4F4F4F",
+                                        "labelColor": "#4F4F4F"
+                                    }
                                 },
                                 "tooltip": [
                                     { "field": "Year", "type": "ordinal", "title": "Year" },
@@ -511,15 +690,27 @@
                             }
                         },
                         {
-                            "title": "World",
-                            "width": 250,
+                            "title": {
+                                "text": "World",
+                                "subtitle": "Global trends indicate a slight decline in male participation",
+                                "subtitleFont": "Georgia",
+                                "subtitleFontSize": 12,
+                                "subtitleFontWeight": "normal",
+                                "subtitleColor": "#4F4F4F",
+                                "anchor": "start"
+                            },
+                            "width": 400,
                             "height": 200,
                             "data": {
                                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/labourparticipation.csv",
                                 "format": { "type": "csv" }
                             },
                             "transform": [{ "filter": "datum.Country == 'World'" }],
-                            "mark": "line",
+                            "mark": {
+                                "type": "line",
+                                "point": true,
+                                "tooltip": true
+                            },
                             "encoding": {
                                 "x": {
                                     "field": "Year",
@@ -540,7 +731,17 @@
                                         "domain": ["Female", "Male"],
                                         "range": ["#8B1A1A", "#2A3B60"]
                                     },
-                                    "title": "Sex"
+                                    "title": "Sex",
+                                    "legend": {
+                                        "symbolType": "stroke",
+                                        "symbolStrokeWidth": 4,
+                                        "labelFont": "Georgia",
+                                        "labelFontSize": 12,
+                                        "titleFont": "Georgia",
+                                        "titleFontSize": 14,
+                                        "titleColor": "#4F4F4F",
+                                        "labelColor": "#4F4F4F"
+                                    }
                                 },
                                 "tooltip": [
                                     { "field": "Year", "type": "ordinal", "title": "Year" },
@@ -555,8 +756,8 @@
             "config": {
                 "background": "white",
                 "axis": {
-                    "labelFont": "sans-serif",
-                    "titleFont": "sans-serif"
+                    "labelFont": "Georgia",
+                    "titleFont": "Georgia"
                 }
             }
         };
@@ -566,13 +767,21 @@
             "width": 300,
             "height": 350,
             "title": {
-                "text": "Female Employment to Population Ratio in Australian States",
-                "fontSize": 15,
-                "font": "sans-serif",
-                "color": "#333",
+                "text": "Female Employment to Population Ratio in Australia",
+                "fontSize": 18,
+                "font": "Georgia",
+                "fontWeight": "bold",
+                "color": "#4F4F4F",
                 "anchor": "middle",
-                "offset": 20
+                "offset": 20,
+                "subtitle": "Click on the state to filter average weekly earnings",
+                "subtitleFont": "Georgia",
+                "subtitleFontSize": 12,
+                "subtitleFontWeight": "normal",
+                "subtitleColor": "#8B1A1A",
+                "subtitlePadding": 10
             },
+
             "params": [
                 {
                     "name": "YearSelection",
@@ -626,8 +835,19 @@
                     "field": "Ratio",
                     "type": "quantitative",
                     "title": "Employment Ratio (%)",
+                    "legend": {
+                        "orient": "bottom",
+                        "direction": "horizontal",
+                        "titleFont": "Georgia",
+                        "titleFontSize": 12,
+                        "labelFont": "Georgia",
+                        "labelFontSize": 10,
+                        "titleColor": "#4F4F4F",
+                        "labelColor": "#4F4F4F",
+                        "gradientLength": 350
+                    },
                     "scale": {
-                        "range": ["#f2ebdf", "#8B1A1A"],
+                        "range": ["#F4A8A8", "#8B1A1A"],
                         "domain": [30, 70]
                     }
                 },
@@ -643,18 +863,21 @@
             }
         };
 
+
+
         const weeklygapSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
                 "text": "Average Weekly Earnings by Gender",
                 "fontSize": 18,
-                "font": "sans-serif",
-                "color": "#333",
+                "font": "Georgia",
+                "fontWeight": "bold",
+                "color": "#4F4F4F",
                 "anchor": "middle",
-                "offset": 10
+                "offset": 20
             },
             "width": 300,
-            "height": 300,
+            "height": 350,
             "data": {
                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/averageweekstate.csv",
                 "format": { "type": "csv" }
@@ -678,7 +901,17 @@
                         "domain": ["Male", "Female"],
                         "range": ["#2A3B60", "#8B1A1A"]
                     },
-                    "title": "Gender"
+                    "title": "Gender",
+                    "legend": {
+                        "orient": "bottom",
+                        "direction": "horizontal",
+                        "titleFont": "Georgia",
+                        "titleFontSize": 16,
+                        "labelFont": "Georgia",
+                        "labelFontSize": 14,
+                        "titleColor": "#4F4F4F",
+                        "labelColor": "#4F4F4F"
+                    }
                 },
                 "tooltip": [
                     { "field": "State", "type": "nominal", "title": "State" },
@@ -694,12 +927,17 @@
 
         const initialChartSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "width": 400,
-            "height": 300,
             "title": {
                 "text": "Average Weekly Earnings in Australia (1995-2024)",
-                "font": "sans-serif"
+                "fontSize": 18,
+                "font": "Georgia",
+                "fontWeight": "bold",
+                "color": "#4F4F4F",
+                "anchor": "middle",
+                "offset": 20
             },
+            "width": 450,
+            "height": 380,
             "data": {
                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/average%20weekly%20earning.csv",
                 "format": { "type": "csv" }
@@ -724,19 +962,29 @@
                             "title": "Year",
                             "axis": {
                                 "labelAngle": 0,
-                                "values": ["1995", "2000", "2005", "2010", "2015", "2020", "2024"]
+                                "values": ["1995", "2000", "2005", "2010", "2015", "2020", "2024"],
+                                "labelFont": "Georgia",
+                                "titleFont": "Georgia",
+                                "titleColor": "#000000",
+                                "labelColor": "#4F4F4F"
                             }
                         },
                         "y": {
                             "field": "Female Weekly Earning",
                             "type": "quantitative",
-                            "title": "Weekly Earning (AUD)"
+                            "title": "Weekly Earning (AUD)",
+                            "axis": {
+                                "labelFont": "Georgia",
+                                "titleFont": "Georgia",
+                                "titleColor": "#000000",
+                                "labelColor": "#4F4F4F"
+                            }
                         },
                         "y2": {
                             "field": "Male Weekly Earning"
                         },
                         "color": {
-                            "value": "#2A3B60"
+                            "value": "#F4A8A8"
                         },
                         "opacity": {
                             "value": 0.3
@@ -780,7 +1028,7 @@
                             "type": "quantitative"
                         },
                         "color": {
-                            "value":  "#8B1A1A"
+                            "value": "#8B1A1A"
                         },
                         "tooltip": [
                             { "field": "Year", "type": "ordinal", "title": "Year" },
@@ -830,7 +1078,7 @@
                             "type": "quantitative"
                         },
                         "color": {
-                            "value": "#1f91a3"
+                            "value": "#2A3B60"
                         }
                     }
                 },
@@ -851,19 +1099,52 @@
                             "type": "quantitative"
                         },
                         "color": {
-                            "value":  "#8B1A1A"
+                            "value": "#8B1A1A"
                         }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "rect",
+                        "color": "#f0f0f0",
+                        "stroke": "lightgrey",
+                        "strokeWidth": 1
+                    },
+                    "encoding": {
+                        "x": { "value": 30 },
+                        "x2": { "value": 250 },
+                        "y": { "value": 20 },
+                        "y2": { "value": 60 }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "color": "black",
+                        "fontSize": 12,
+                        "align": "center",
+                        "dx": 0,
+                        "dy": -10
+                    },
+                    "encoding": {
+                        "x": { "value": 140 },
+                        "y": { "value": 45 },
+                        "text": { "value": "The highest pay gap is recorded in 2012" }
                     }
                 }
             ],
             "config": {
                 "background": "white",
                 "axis": {
-                    "labelFont": "sans-serif",
-                    "titleFont": "sans-serif"
+                    "labelFont": "Georgia",
+                    "titleFont": "Georgia",
+                    "titleColor": "#4F4F4F",
+                    "labelColor": "#4F4F4F"
                 }
             }
         };
+
+
 
 
 
@@ -894,7 +1175,13 @@
     <!-- Section 4: Sexual Assaults and Feeling Rushed Section -->
     <div class="section section4">
         <div class="inner-containerx">
-            <h1>Female Safety in Australia</h1>
+
+            <div class="card-header">
+
+                <h1>Female <span style="color: rgb(219, 78, 78);"> Safety</span> In Australia</h1>
+
+
+            </div>
 
             <!-- Sexual Assaults Chart (Card) -->
             <div class="card">
@@ -907,8 +1194,10 @@
             <div class="card">
                 <div class="card-body">
                     <p class="text-content">
-                        The chart above shows a huge percentage different on how many female getting sexually assaults compared to male.
-                        This shows how female in Australia might feel unsafe due to a high sexual assaults crime in every state.
+                        The chart above shows a huge percentage different on how many female getting sexually assaults
+                        compared to male.
+                        This shows how female in Australia might feel unsafe due to a high sexual assaults crime in
+                        every state.
                     </p>
                 </div>
             </div>
@@ -925,8 +1214,8 @@
             <div class="card">
                 <div class="card-body">
                     <p class="text-content">
-                        The chart above visualizes the percentage of female who feel rushed in doing their daily routine. We can see that between every age range,
-                        more female are feeling rushed in doing and multitasking many task.
+                        Female feels rushed compared to male in every age range. Females aged 25-44 report feeling the
+                        most rushed, with percentages decreasing as age increases.
                     </p>
                 </div>
             </div>
@@ -939,14 +1228,15 @@
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
                 "text": "Sexual Assaults by Gender and State",
-                "fontSize": 18,
-                "font": "sans-serif",
-                "color": "#333",
+                "fontSize": 20,
+                "font": "Georgia",
+                "fontWeight": "bold",
+                "color": "#4F4F4F",
                 "anchor": "middle",
-                "offset": 10
+                "offset": 20
             },
             "width": 500,
-            "height": 300,
+            "height": 400,
             "data": {
                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/Female%20Assault.csv",
                 "format": { "type": "csv" }
@@ -958,8 +1248,15 @@
                 "y": {
                     "field": "State",
                     "type": "nominal",
-                    "title": "State",
-                    "sort": "ascending"
+                    "titleColor": "#000000",
+                    "titleFont": "Georgia",
+                    "titleFontSize": 16,
+                    "sort": "ascending",
+                    "axis": {
+                        "labelFont": "Georgia",
+                        "labelFontSize": 14,
+                        "labelColor": "#4F4F4F"
+                    }
                 },
                 "x": {
                     "field": "Estimate",
@@ -968,16 +1265,30 @@
                     "title": "Percentage of Assaults (%)",
                     "axis": {
                         "format": "0%",
-                        "labelAngle": 0
+                        "labelAngle": 0,
+                        "labelFont": "Georgia",
+                        "labelFontSize": 12,
+                        "titleFont": "Georgia",
+                        "titleFontSize": 14,
+                        "titleColor": "#000000",
+                        "labelColor": "#4F4F4F"
                     }
                 },
                 "color": {
                     "field": "Gender",
                     "type": "nominal",
                     "title": "Gender",
+                    "legend": {
+                        "titleFont": "Georgia",
+                        "titleFontSize": 16,
+                        "labelFont": "Georgia",
+                        "labelFontSize": 14,
+                        "titleColor": "#000000",
+                        "labelColor": "#000000"
+                    },
                     "scale": {
                         "domain": ["Male", "Female"],
-                        "range": ["#2A3B60", "#8B1A1A"]
+                        "range": ["#2A3B60", "#a84040"]
                     }
                 },
                 "tooltip": [
@@ -988,18 +1299,20 @@
             }
         };
 
+
         const feelingRushedSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
                 "text": "Feeling Rushed by Age Group and Gender",
-                "fontSize": 18,
-                "font": "sans-serif",
-                "color": "#333",
+                "fontSize": 20,
+                "font": "Georgia",
+                "fontWeight": "bold",
+                "color": "#4F4F4F",
                 "anchor": "middle",
-                "offset": 10
+                "offset": 20
             },
-            "width": 400,
-            "height": 300,
+            "width": 500,
+            "height": 400,
             "data": {
                 "url": "https://raw.githubusercontent.com/isut0003/3179/refs/heads/main/Feelingrushed.csv",
                 "format": { "type": "csv" }
@@ -1020,6 +1333,13 @@
                     "field": "Age group",
                     "type": "nominal",
                     "title": "Age Group",
+                    "titleFont": "Georgia",
+                    "titleFontSize": 14,
+                    "axis": {
+                        "labelFont": "Georgia",
+                        "labelFontSize": 14,
+                        "labelColor": "#4F4F4F"
+                    },
                     "sort": "ascending"
                 },
                 "x": {
@@ -1028,7 +1348,13 @@
                     "title": "Male (%), Female (%)",
                     "axis": {
                         "format": ".1f",
-                        "labelExpr": "datum.value < 0 ? format(-datum.value, '.1f') : format(datum.value, '.1f')"
+                        "labelExpr": "datum.value < 0 ? format(-datum.value, '.1f') : format(datum.value, '.1f')",
+                        "labelFont": "Georgia",
+                        "labelFontSize": 14,
+                        "labelColor": "#4F4F4F",
+                        "titleFont": "Georgia",
+                        "titleFontSize": 12,
+                        "titleColor": "#000000"
                     }
                 },
                 "color": {
@@ -1036,9 +1362,17 @@
                     "type": "nominal",
                     "scale": {
                         "domain": ["Male Percentage", "Female Percentage"],
-                        "range": ["#2A3B60", "#8B1A1A"]
+                        "range": ["#2A3B60", "#a84040"]
                     },
-                    "title": "Gender"
+                    "legend": {
+                        "title": "Gender",
+                        "titleFont": "Georgia",
+                        "titleFontSize": 16,
+                        "labelFont": "Georgia",
+                        "labelFontSize": 14,
+                        "titleColor": "#000000",
+                        "labelColor": "#000000"
+                    }
                 },
                 "tooltip": [
                     { "field": "Age group", "type": "nominal", "title": "Age Group" },
@@ -1057,30 +1391,48 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Section 5 -->
     <div class="section section5">
-        <p>Author : Irene Sutanto</p>
-        <p>Date : 12 October 2024</p>
-        <p>Data : Australian Bureau Statistic (Gender indicator), World Bank Data</p>
+        <div class="inner-container">
 
+            <div class="card-header">
+
+                <h1>Conclusion</h1>
+
+
+            </div>
+
+
+            <!-- Explanation Text (Separate Card) -->
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-content">
+                        Female has a huge part in Australia and seeing how their employability and labour participation
+                        has increased within the year is showing their credibility.
+                        Yet, there is still room to improve in decreasing the gap for female earnings and building a
+                        more safe and peaceful environment for female by maintaining its
+                        sexual assault crime rate and start to be more understanding to female's high task routine that
+                        needs more time than male.
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+
+    <!-- Section 6 -->
+    <div class="section section6">
+        <p>
+            <span>Author: Irene Sutanto</span><br>
+            <span>Date: 12 October 2024</span><br>
+            <span>Data: Australian Bureau Statistic (Gender indicator), World Bank Data</span>
+        </p>
+    </div>
+
 
 
 
